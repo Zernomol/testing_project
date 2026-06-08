@@ -1,24 +1,21 @@
-import com.codeborne.selenide.Selenide;
+
 import com.codeborne.selenide.SelenideElement;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class InzhenerkaLoginPage extends BaseTest {
+public class InzhenerkaLoginPage {
 
-    private final SelenideElement usernameField = $("#username");
+    private SelenideElement usernameField = $("#username");
 
-    private final SelenideElement passwordField = $("[name='password']");
+    private SelenideElement passwordField = $("[name='password']");
 
-    private final SelenideElement loginButton = $("button[type='submit']");
+    private SelenideElement loginButton = $("button[type='submit']");
 
-
-    public void openPage() {
-        String URL = "https://qa-stand-login.inzhenerka.tech/login";
-        open(URL);
-    }
 
     public void setUsernameField(String username) {
         usernameField.setValue(username);
@@ -33,12 +30,11 @@ public class InzhenerkaLoginPage extends BaseTest {
         loginButton.click();
     }
 
-    public void clickLogout() {
-        SelenideElement logoutButton = $("body > div > div.row.justify-content-center > div > div > div > a");
-        logoutButton.click();
+
+
+    public void isLoggedIn() {
+        System.out.println($("body").shouldHave(text("Привет, ")).exists());
+
 
     }
-
-
-
 }
